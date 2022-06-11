@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_10_225459) do
+ActiveRecord::Schema.define(version: 2022_06_11_012815) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,16 +27,25 @@ ActiveRecord::Schema.define(version: 2022_06_10_225459) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "contact_services", force: :cascade do |t|
+    t.bigint "service_id", null: false
+    t.bigint "contact_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["contact_id"], name: "index_contact_services_on_contact_id"
+    t.index ["service_id"], name: "index_contact_services_on_service_id"
+  end
+
   create_table "contacts", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "telephone"
     t.text "description"
     t.string "budget"
-    t.bigint "service_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["service_id"], name: "index_contacts_on_service_id"
+    t.string "service"
+    t.datetime "date"
   end
 
   create_table "members", force: :cascade do |t|
@@ -51,6 +60,7 @@ ActiveRecord::Schema.define(version: 2022_06_10_225459) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "link"
   end
 
   create_table "project_members", force: :cascade do |t|
@@ -84,6 +94,7 @@ ActiveRecord::Schema.define(version: 2022_06_10_225459) do
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "link"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -99,7 +110,8 @@ ActiveRecord::Schema.define(version: 2022_06_10_225459) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "contacts", "services"
+  add_foreign_key "contact_services", "contacts"
+  add_foreign_key "contact_services", "services"
   add_foreign_key "members", "roles"
   add_foreign_key "project_members", "members"
   add_foreign_key "project_members", "project_roles"

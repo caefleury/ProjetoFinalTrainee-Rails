@@ -1,3 +1,4 @@
 class Partner < ApplicationRecord
-    validates :name, uniqueness: true
+    validates :name, :link, uniqueness: true
+    validates :name, :link, presence: true
 end
