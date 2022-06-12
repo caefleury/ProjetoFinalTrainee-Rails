@@ -30,6 +30,13 @@ Rails.application.routes.draw do
         patch 'update/:id', to: 'partners#update'
         delete 'delete/:id', to: 'partners#delete'
       end
+      scope 'services' do
+        get 'index', to: 'services#index'
+        get 'show/:id', to: 'services#show'
+        post 'create', to: 'services#create'
+        patch 'update/:id', to: 'services#update'
+        delete 'delete/:id', to: 'services#delete'
+      end
     end
   end
 end

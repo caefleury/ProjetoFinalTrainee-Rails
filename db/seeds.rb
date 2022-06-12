@@ -16,3 +16,7 @@ Admin.create!(email: "batata@batata.com", password: "123456")
 Project.create!(name: "Projeto Final Trainee", link: "www.youtube.com", description: "Projeto final do site da Struct feito pelo melhor grupo")
 
 Partner.create!(name: "UnB", link: "www.sigaa.unb.br")
+
+Service.create!(name: "Website", description: "sla 1")
+Service.create!(name: "Sistema Web", description: "sla 2")
+Service.create!(name: "Aplicativo", description: "sla 3")
