@@ -16,6 +16,13 @@ Rails.application.routes.draw do
         get 'login', to: 'admins#login'
         get 'logout', to: 'admins#logout'
       end
+      scope 'projects' do
+        get 'index', to: 'projects#index'
+        get 'show/:id', to: 'projects#show'
+        post 'create', to: 'projects#create'
+        patch 'update/:id', to: 'projects#update'
+        delete 'delete/:id', to: 'projects#delete'
+      end
     end
   end
 end

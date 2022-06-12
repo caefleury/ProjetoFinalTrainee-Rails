@@ -12,3 +12,5 @@ Member.create!(name: "Luiz", role_id: 1)
 Member.create!(name: "Caetano", role_id: 1)
 
 Admin.create!(email: "batata@batata.com", password: "123456")
+
+Project.create!(name: "Projeto Final Trainee", link: "www.youtube.com", description: "Projeto final do site da Struct feito pelo melhor grupo")
