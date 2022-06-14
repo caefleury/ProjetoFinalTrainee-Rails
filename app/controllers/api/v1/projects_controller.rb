@@ -33,13 +33,13 @@ class Api::V1::ProjectsController < ApplicationController
     def delete
         project = Project.find(params[:id])
         project.destroy!
-        render json: { message: "Projeto '#{project.name}' deletado com sucesso"}, status: :ok
+        render json: { message: "Projeto '#{project.name}' deletado com sucesso."}, status: :ok
     rescue StandardError => e
         render json: e, status: :bad_request
     end
 
     private
     def projects_params
-        params.require(:project).permit(:name, :link, :description)
+        params.require(:project).permit(:name, :link, :description, :photo_url)
     end
 end

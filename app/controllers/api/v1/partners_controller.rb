@@ -33,13 +33,13 @@ class Api::V1::PartnersController < ApplicationController
     def delete
         partner = Partner.find(params[:id])
         partner.destroy!
-        render json: { message: "Parceiro '#{partner.name}' deletado com sucesso"}, status: :ok
+        render json: { message: "Parceiro '#{partner.name}' deletado com sucesso."}, status: :ok
     rescue StandardError => e
         render json: e, status: :bad_request
     end
 
     private
     def partners_params
-        params.require(:partner).permit(:name, :link)
+        params.require(:partner).permit(:name, :link, :photo_url)
     end
 end

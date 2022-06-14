@@ -33,7 +33,7 @@ class Api::V1::ServicesController < ApplicationController
     def delete
       service = Service.find(params[:id])
       service.destroy!
-      render json: { message: "Serviço '#{service.name}' deletado com sucesso"}, status: :ok
+      render json: { message: "Serviço '#{service.name}' deletado com sucesso."}, status: :ok
     rescue StandardError => e
       render json: e, status: :bad_request
     end

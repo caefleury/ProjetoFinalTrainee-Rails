@@ -13,8 +13,8 @@ class Api::V1::AdminsController < ApplicationController
         render json: { message: e.message}, status: :not_found
     end
     def logout
-        current_user.authentication_token = nil
-        current_user.save!
+        current_admin.authentication_token = nil
+        current_admin.save!
         head(:ok)
     rescue StandardError => e
         render json: { message: e.message}, status: :bad_request

@@ -33,13 +33,13 @@ class Api::V1::MembersController < ApplicationController
     def delete
       member = Member.find(params[:id])
       member.destroy!
-      render json: { message: "Membro #{member.name} deletado com sucesso"}, status: :ok
+      render json: { message: "Membro #{member.name} deletado com sucesso."}, status: :ok
     rescue StandardError => e
       render json: e, status: :bad_request
     end
 
     private
     def members_params
-      params.require(:member).permit(:name, :role_id)
+      params.require(:member).permit(:name, :role_id, :photo_url)
     end
 end
