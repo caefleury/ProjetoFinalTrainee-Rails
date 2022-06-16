@@ -1,39 +1,37 @@
 require 'rails_helper'
 
-RSpec.describe "Api::V1::Members", type: :request do
+RSpec.describe "Api::V1::Projects", type: :request do
   describe "/GET #index" do
     it 'return http status OK' do
-      get "/api/v1/members/index"
+      get "/api/v1/projects/index"
       expect(response).to have_http_status(:ok)
     end
 
     it 'returns a JSON' do
-      get "/api/v1/members/index"
+      get "/api/v1/projects/index"
       expect(response.content_type).to eq('application/json; charset=utf-8')
     end
   end
-
   describe "/GET #show" do
-    it "if member exist" do
-      member = create(:member)
-      get "/api/v1/members/show/#{member.id}"
+    it "if project exist" do
+      project = create(:project)
+      get "/api/v1/projects/show/#{project.id}"
       expect(response).to have_http_status(:ok)
     end
 
-    it "if member not exist" do
-      get "/api/v1/members/show/35"
+    it "if project not exist" do
+      get "/api/v1/projects/show/35"
       expect(response).to have_http_status(:not_found)
     end
   end
   describe "/GET #create" do
     let(:admin) {create(:admin)}
-    let(:role) {create(:role)}
-    let(:members_params) do 
-      {name:'teste', role_id:role.id}
+    let(:projects_params) do 
+      {name:'teste', description:'bbbbbbbbb', link:'www.teste.com'}
     end
     context 'params are ok' do
       it 'return http status created' do
-        post '/api/v1/members/create', params: {member: members_params}, headers: {
+        post '/api/v1/projects/create', params: {project: projects_params}, headers: {
           "X-Admin-Email": admin.email,
           "X-Admin-Token": admin.authentication_token
         }
@@ -43,8 +41,8 @@ RSpec.describe "Api::V1::Members", type: :request do
     
     context 'bad params' do
       it 'returns http status bad request' do
-        members_params = nil
-        post '/api/v1/members/create', params: {contact: members_params}, headers: {
+        projects_params = nil
+        post '/api/v1/projects/create', params: {project: projects_params}, headers: {
           "X-Admin-Email": admin.email,
           "X-Admin-Token": admin.authentication_token
         }
@@ -54,15 +52,14 @@ RSpec.describe "Api::V1::Members", type: :request do
   end
   describe 'PATCH #update' do
     let(:admin) {create(:admin)}
-    let(:role) {create(:role)}
-    let(:member_params) do
-      {name:'teste', role_id: role.id}
+    let(:project_params) do
+      {name:'teste', description:'bbbbbbbbb', link:'www.teste.com'}
     end
-      let(:member) {create(:member)}
+      let(:project) {create(:project)}
 
       context 'params are ok' do
         it 'return http status ok' do
-          patch "/api/v1/members/update/#{member.id}", params:{member:member_params}, headers: {
+          patch "/api/v1/projects/update/#{project.id}", params:{project:project_params}, headers: {
             "X-Admin-Email": admin.email,
             "X-Admin-Token": admin.authentication_token
           }
@@ -71,8 +68,8 @@ RSpec.describe "Api::V1::Members", type: :request do
       end
       context 'bad params' do
         it 'returns http status bad request' do
-          members_params = nil
-          patch "/api/v1/members/update/54", params:{member:member_params}, headers: {
+          projects_params = nil
+          patch "/api/v1/projects/update/54", params:{project:project_params}, headers: {
            "X-Admin-Email": admin.email,
             "X-Admin-Token": admin.authentication_token
           }
@@ -82,19 +79,19 @@ RSpec.describe "Api::V1::Members", type: :request do
   end
   describe '/DELETE #delete' do
     let(:admin) {create(:admin)}
-    let(:member) {create(:member)}
-    context 'if member exist' do
+    let(:project) {create(:project)}
+    context 'if project exist' do
       it 'return http status ok' do
-        delete "/api/v1/members/delete/#{member.id}", headers: {
+        delete "/api/v1/projects/delete/#{project.id}", headers: {
           "X-Admin-Email": admin.email,
           "X-Admin-Token": admin.authentication_token
         }
         expect(response).to  have_http_status(:ok)
       end
     end
-    context 'if member not exist' do
+    context 'if project not exist' do
       it 'return bad request' do
-        delete "/api/v1/members/delete/999", headers: {
+        delete "/api/v1/projects/delete/999", headers: {
           "X-Admin-Email": admin.email,
           "X-Admin-Token": admin.authentication_token
         }
@@ -103,6 +100,3 @@ RSpec.describe "Api::V1::Members", type: :request do
     end
   end
 end
-
-
-   

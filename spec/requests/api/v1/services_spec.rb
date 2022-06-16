@@ -1,39 +1,38 @@
 require 'rails_helper'
 
-RSpec.describe "Api::V1::Members", type: :request do
+RSpec.describe "Api::V1::Services", type: :request do
   describe "/GET #index" do
     it 'return http status OK' do
-      get "/api/v1/members/index"
+      get "/api/v1/services/index"
       expect(response).to have_http_status(:ok)
     end
 
     it 'returns a JSON' do
-      get "/api/v1/members/index"
+      get "/api/v1/services/index"
       expect(response.content_type).to eq('application/json; charset=utf-8')
     end
   end
-
+  
   describe "/GET #show" do
-    it "if member exist" do
-      member = create(:member)
-      get "/api/v1/members/show/#{member.id}"
+    it "if service exist" do
+      service = create(:service)
+      get "/api/v1/services/show/#{service.id}"
       expect(response).to have_http_status(:ok)
     end
 
-    it "if member not exist" do
-      get "/api/v1/members/show/35"
+    it "if service not exist" do
+      get "/api/v1/services/show/35"
       expect(response).to have_http_status(:not_found)
     end
   end
-  describe "/GET #create" do
+  describe "/POST #create" do
     let(:admin) {create(:admin)}
-    let(:role) {create(:role)}
-    let(:members_params) do 
-      {name:'teste', role_id:role.id}
+    let(:services_params) do 
+      {name:'teste', description:'aaaaaaa'}
     end
     context 'params are ok' do
       it 'return http status created' do
-        post '/api/v1/members/create', params: {member: members_params}, headers: {
+        post '/api/v1/services/create', params: {service: services_params}, headers: {
           "X-Admin-Email": admin.email,
           "X-Admin-Token": admin.authentication_token
         }
@@ -43,8 +42,8 @@ RSpec.describe "Api::V1::Members", type: :request do
     
     context 'bad params' do
       it 'returns http status bad request' do
-        members_params = nil
-        post '/api/v1/members/create', params: {contact: members_params}, headers: {
+        services_params = nil
+        post '/api/v1/services/create', params: {service: services_params}, headers: {
           "X-Admin-Email": admin.email,
           "X-Admin-Token": admin.authentication_token
         }
@@ -54,15 +53,14 @@ RSpec.describe "Api::V1::Members", type: :request do
   end
   describe 'PATCH #update' do
     let(:admin) {create(:admin)}
-    let(:role) {create(:role)}
-    let(:member_params) do
-      {name:'teste', role_id: role.id}
+    let(:service_params) do
+      {name:'teste', description:'bbbbbbbbb'}
     end
-      let(:member) {create(:member)}
+      let(:service) {create(:service)}
 
       context 'params are ok' do
         it 'return http status ok' do
-          patch "/api/v1/members/update/#{member.id}", params:{member:member_params}, headers: {
+          patch "/api/v1/services/update/#{service.id}", params:{service:service_params}, headers: {
             "X-Admin-Email": admin.email,
             "X-Admin-Token": admin.authentication_token
           }
@@ -71,8 +69,8 @@ RSpec.describe "Api::V1::Members", type: :request do
       end
       context 'bad params' do
         it 'returns http status bad request' do
-          members_params = nil
-          patch "/api/v1/members/update/54", params:{member:member_params}, headers: {
+          services_params = nil
+          patch "/api/v1/services/update/54", params:{service:service_params}, headers: {
            "X-Admin-Email": admin.email,
             "X-Admin-Token": admin.authentication_token
           }
@@ -82,19 +80,19 @@ RSpec.describe "Api::V1::Members", type: :request do
   end
   describe '/DELETE #delete' do
     let(:admin) {create(:admin)}
-    let(:member) {create(:member)}
-    context 'if member exist' do
+    let(:service) {create(:service)}
+    context 'if service exist' do
       it 'return http status ok' do
-        delete "/api/v1/members/delete/#{member.id}", headers: {
+        delete "/api/v1/services/delete/#{service.id}", headers: {
           "X-Admin-Email": admin.email,
           "X-Admin-Token": admin.authentication_token
         }
         expect(response).to  have_http_status(:ok)
       end
     end
-    context 'if member not exist' do
+    context 'if service not exist' do
       it 'return bad request' do
-        delete "/api/v1/members/delete/999", headers: {
+        delete "/api/v1/services/delete/999", headers: {
           "X-Admin-Email": admin.email,
           "X-Admin-Token": admin.authentication_token
         }
@@ -103,6 +101,3 @@ RSpec.describe "Api::V1::Members", type: :request do
     end
   end
 end
-
-
-   
