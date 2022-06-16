@@ -35,8 +35,8 @@ Project.find_by(id:3).photo.attach(io: File.open('./public/logo-UnB.png'),filena
 
 
 ProjectRole.create!(name: "Project Owner")
-ProjectRole.create!(name: "Desenvolvedor")
 ProjectRole.create!(name: "Gerente")
+ProjectRole.create!(name: "Desenvolvedor")
 
 Partner.create!(name: "UnB", link: "www.sigaa.unb.br")
 Partner.find_by(id:1).photo.attach(io: File.open('./public/logo-UnB.png'), filename: 'logo-UnB.png')
@@ -49,5 +49,13 @@ Service.create!(name: "Website", description: "Sites institucionais, portfólios
 Service.create!(name: "Sistema Web", description: "Plataformas e sistemas personalizados, seguros e responsivos, desenvolvidos para automatizar seus processos ou lançar um novo serviço.")
 Service.create!(name: "Aplicativo", description: "Soluções em aplicativos Android e IOS, desenvolvidos sob demanda, personalizados para sua necessidade.")
 
-ProjectMember.create!(member_id: 1, project_id: 1, project_role_id: 2)
-ProjectMember.create!(member_id: 2, project_id: 1, project_role_id: 1)
+ProjectMember.create!(member_id: 1, project_id: 1, project_role_id: 3)
+ProjectMember.create!(member_id: 2, project_id: 1, project_role_id: 3)
+ProjectMember.create!(member_id: 3, project_id: 1, project_role_id: 3)
+ProjectMember.create!(member_id: 4, project_id: 1, project_role_id: 3)
+ProjectMember.create!(member_id: 5, project_id: 2, project_role_id: 1)
+ProjectMember.create!(member_id: 6, project_id: 2, project_role_id: 2)
+ProjectMember.create!(member_id: 7, project_id: 2, project_role_id: 3)
+ProjectMember.create!(member_id: 8, project_id: 3, project_role_id: 1)
+ProjectMember.create!(member_id: 9, project_id: 3, project_role_id: 2)
+ProjectMember.create!(member_id: 10, project_id: 3, project_role_id: 3)
