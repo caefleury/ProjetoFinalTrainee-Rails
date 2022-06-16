@@ -10,7 +10,6 @@ class ProjectSerializer < ActiveModel::Serializer
   def membersInProject
     members = []
     object.project_members.each do |obj|
-      member_photo_url = nil
       if obj.member.photo.attached?
         member_photo_url = Rails.application.routes.url_helpers.rails_blob_path(obj.member.photo, only_path: true)
       end
