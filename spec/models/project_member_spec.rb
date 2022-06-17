@@ -1,5 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe ProjectMember, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+    describe 'factory' do
+        context 'when using standart factory' do
+            it { expect(build(:project_member)).to be_valid }
+        end
+    end
 end
