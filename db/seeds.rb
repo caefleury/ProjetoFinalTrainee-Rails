@@ -27,11 +27,11 @@ Member.find_by(id:10).photo.attach(io: File.open('./public/Flash.jpeg'), filenam
 
 
 
-Project.create!(name: "Projeto Final Trainee", link: "www.youtube.com", description: "Projeto final do site da Struct feito pelo melhor grupo")
+Project.create!(name: "Projeto Final Trainee", link: "https://www.youtube.com", description: " É inovador e revolucionário? Não. Mas durante aquela meia hora cria ali para você um lugar tão reconfortante… O fato é que o clima leve do projeto o torna simplesmente aconchegante. ")
 Project.find_by(id:1).photo.attach(io: File.open('./public/pokemon.png'), filename: 'pokemon.png')
-Project.create!(name: "Club Penguin", link: "https://newcp.net/pt/", description: "Nostalgia Pura")
+Project.create!(name: "Club Penguin", link: "https://newcp.net/pt/", description: "Tem aquela baita presença, uma personalidade enorme e tem instintos muito bons também")
 Project.find_by(id:2).photo.attach(io: File.open('./public/ClubPenguin.jpg'),filename: 'ClubPenguin.jpg')
-Project.create!(name: "Sigaa", link: "https://sig.unb.br/sigaa", description: "Site da UnB")
+Project.create!(name: "Sigaa", link: "https://sig.unb.br/sigaa", description: "Eu queria gostar muito dele, mas eu percebi que estava me esforçando e não estava obtendo nenhum resultado…")
 Project.find_by(id:3).photo.attach(io: File.open('./public/logo-UnB.png'),filename: 'logo-UnB.png')
 
 
@@ -50,13 +50,13 @@ Service.create!(name: "Website", description: "Sites institucionais, portfólios
 Service.create!(name: "Sistema Web", description: "Plataformas e sistemas personalizados, seguros e responsivos, desenvolvidos para automatizar seus processos ou lançar um novo serviço.")
 Service.create!(name: "Aplicativo", description: "Soluções em aplicativos Android e IOS, desenvolvidos sob demanda, personalizados para sua necessidade.")
 
-ProjectMember.create!(member_id: 1, project_id: 1, project_role_id: 3)
-ProjectMember.create!(member_id: 2, project_id: 1, project_role_id: 3)
-ProjectMember.create!(member_id: 3, project_id: 1, project_role_id: 3)
+ProjectMember.create!(member_id: 1, project_id: 2, project_role_id: 3)
+ProjectMember.create!(member_id: 2, project_id: 2, project_role_id: 3)
+ProjectMember.create!(member_id: 3, project_id: 2, project_role_id: 3)
 ProjectMember.create!(member_id: 4, project_id: 1, project_role_id: 3)
-ProjectMember.create!(member_id: 5, project_id: 2, project_role_id: 1)
-ProjectMember.create!(member_id: 6, project_id: 2, project_role_id: 2)
-ProjectMember.create!(member_id: 7, project_id: 2, project_role_id: 3)
+ProjectMember.create!(member_id: 5, project_id: 1, project_role_id: 1)
+ProjectMember.create!(member_id: 6, project_id: 1, project_role_id: 2)
+ProjectMember.create!(member_id: 7, project_id: 1, project_role_id: 3)
 ProjectMember.create!(member_id: 8, project_id: 3, project_role_id: 1)
 ProjectMember.create!(member_id: 9, project_id: 3, project_role_id: 2)
 ProjectMember.create!(member_id: 10, project_id: 3, project_role_id: 3)
