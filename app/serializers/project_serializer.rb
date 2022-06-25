@@ -1,5 +1,5 @@
 class ProjectSerializer < ActiveModel::Serializer
-  attributes :name, :description, :link, :photo_url, :membersInProject
+  attributes :id, :name, :description, :link, :photo_url, :membersInProject
 
   def photo_url
     if object.photo.attached?
