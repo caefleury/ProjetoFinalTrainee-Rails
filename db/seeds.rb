@@ -39,7 +39,7 @@ ProjectRole.create!(name: "Project Owner")
 ProjectRole.create!(name: "Gerente")
 ProjectRole.create!(name: "Desenvolvedor")
 
-Partner.create!(name: "UnB", link: "www.sigaa.unb.br")
+Partner.create!(name: "UnB", link: "https://www.sig.unb.br")
 Partner.find_by(id:1).photo.attach(io: File.open('./public/logo-UnB.png'), filename: 'logo-UnB.png')
 Partner.create!(name: "Concentro", link: "https://www.instagram.com/concentrodf/")
 Partner.find_by(id:2).photo.attach(io: File.open('./public/logo-concentro.png'), filename: 'logo-concentro.png')
