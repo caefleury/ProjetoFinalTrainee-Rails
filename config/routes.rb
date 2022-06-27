@@ -22,6 +22,7 @@ Rails.application.routes.draw do
         post 'create', to: 'projects#create'
         patch 'update/:id', to: 'projects#update'
         delete 'delete/:id', to: 'projects#delete'
+        post '/add_photo/:id', to: 'projects#add_photo'
       end
       scope 'partners' do
         get 'index', to: 'partners#index'
