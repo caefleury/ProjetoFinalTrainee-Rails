@@ -49,6 +49,22 @@ class Api::V1::ProjectsController < ApplicationController
         render json: project
     end
 
+    def removeMemberFromProject
+        project_member = ProjectMember.find_by!(member_id: params[:member_id], project_id: params[:project_id])
+        project_member.destroy!
+        head(:ok)
+    rescue StandardError => e
+        render json: e, status: :bad_request
+    end
+
+    def addMemberFromProject
+        project_member = ProjectMember.new(member_id: params[:member_id], project_id: params[:project_id], project_role_id: params[:project_role_id])
+        project_member.save!
+        render json: project_member, status: :created
+    rescue StandardError => e
+        render json: e, status: :bad_request
+    end
+
     private
     def projects_params
         params.require(:project).permit(:name, :link, :description, :photo_url)
