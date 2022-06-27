@@ -24,7 +24,7 @@ Rails.application.routes.draw do
         patch 'update/:id', to: 'projects#update'
         delete 'delete/:id', to: 'projects#delete'
         post '/add_photo/:id', to: 'projects#add_photo'
-        delete 'removeMemberFromProject', to: 'projects#removeMemberFromProject'
+        delete 'removeMemberFromProject/:member_id/:project_id', to: 'projects#removeMemberFromProject'
         post 'addMemberFromProject', to: 'projects#addMemberFromProject'
       end
       scope 'partners' do

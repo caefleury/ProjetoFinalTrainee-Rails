@@ -13,7 +13,7 @@ class ProjectSerializer < ActiveModel::Serializer
       if obj.member.photo.attached?
         member_photo_url = Rails.application.routes.url_helpers.rails_blob_path(obj.member.photo, only_path: true)
       end
-      members.append(name: obj.member.name, photo_url: member_photo_url, project_role: obj.project_role.name)
+      members.append(member_id: obj.member.id,  name: obj.member.name, photo_url: member_photo_url, project_role: obj.project_role.name)
     end
     return members
   end
