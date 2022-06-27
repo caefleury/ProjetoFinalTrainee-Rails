@@ -38,6 +38,17 @@ class Api::V1::ProjectsController < ApplicationController
         render json: e, status: :bad_request
     end
 
+    def add_photo
+        project = Project.find(params[:id])
+        if project.photo.attached?
+            project.photo.purge
+        end
+        params[:photo].each do |photo|
+            project.photo.attach(photo)
+        end
+        render json: project
+    end
+
     private
     def projects_params
         params.require(:project).permit(:name, :link, :description, :photo_url)

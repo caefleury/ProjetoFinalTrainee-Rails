@@ -1,5 +1,5 @@
 class PartnerSerializer < ActiveModel::Serializer
-  attributes :name, :photo_url, :link
+  attributes :id, :name, :photo_url, :link
 
   def photo_url
     if object.photo.attached?

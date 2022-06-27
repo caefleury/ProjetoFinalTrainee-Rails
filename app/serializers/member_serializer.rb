@@ -1,5 +1,5 @@
 class MemberSerializer < ActiveModel::Serializer
-  attributes :name, :photo_url
+  attributes :id, :name, :photo_url
 
   has_one :role
 
