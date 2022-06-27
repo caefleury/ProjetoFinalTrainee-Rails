@@ -11,6 +11,7 @@ Rails.application.routes.draw do
         post 'create', to: 'members#create'
         patch 'update/:id', to: 'members#update'
         delete 'delete/:id', to: 'members#delete'
+        post '/add_photo/:id', to: 'members#add_photo'
       end
       scope 'admins' do
         get 'login', to: 'admins#login'

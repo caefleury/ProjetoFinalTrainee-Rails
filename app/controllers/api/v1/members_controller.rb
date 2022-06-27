@@ -38,6 +38,17 @@ class Api::V1::MembersController < ApplicationController
       render json: e, status: :bad_request
     end
 
+    def add_photo
+      members = Member.find(params[:id])
+      if members.photo.attached?
+          members.photo.purge
+      end
+      params[:photo].each do |photo|
+          members.photo.attach(photo)
+      end
+      render json:members 
+    end
+
     private
     def members_params
       params.require(:member).permit(:name, :role_id, :photo_url)
